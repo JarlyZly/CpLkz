@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/mall-api" />
+    <file type="web" url="file://$PROJECT_DIR$/mall-h5" />
+    <file type="web" url="file://$PROJECT_DIR$/mall-listener" />
+    <file type="web" url="file://$PROJECT_DIR$/mall-merchant" />
+    <file type="web" url="file://$PROJECT_DIR$/mall-web" />
+  </component>
   <component name="IdProvider" IDEtalkID="1F45719F6E310FD3068B946CA0FAC3A6" />
   <component name="MavenProjectsManager">
     <option name="originalFiles">

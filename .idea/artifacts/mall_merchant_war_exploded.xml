@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="mall-merchant:war exploded">
+    <output-path>$PROJECT_DIR$/mall-merchant/target/mall-merchant-0.0.1</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="mall-merchant" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/mall-merchant/target/mall-merchant-0.0.1/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="mall-merchant/web/Web" />
+    </root>
+  </artifact>
+</component>
