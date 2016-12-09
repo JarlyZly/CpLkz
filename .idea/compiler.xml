@@ -36,5 +36,8 @@
         <module name="mall-webparent" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="CpLkz" target="1.7" />
+    </bytecodeTargetLevel>
   </component>
 </project>
