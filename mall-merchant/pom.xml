@@ -7,9 +7,11 @@
         <version>0.0.1</version>
         <relativePath>../mall-webparent</relativePath>
     </parent>
+
     <artifactId>mall-merchant</artifactId>
     <packaging>war</packaging>
     <description>应用开发者web系统模块</description>
+
     <repositories>
         <repository>
             <id>central</id>

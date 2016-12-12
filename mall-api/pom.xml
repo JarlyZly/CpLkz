@@ -9,6 +9,7 @@
         <version>0.0.1</version>
         <relativePath>../mall-webparent</relativePath>
     </parent>
+
     <artifactId>mall-api</artifactId>
     <packaging>war</packaging>
 

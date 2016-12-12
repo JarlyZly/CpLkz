@@ -9,8 +9,10 @@
         <version>0.0.1</version>
         <relativePath>../mall-parent</relativePath>
     </parent>
+
     <artifactId>mall-h5</artifactId>
     <packaging>war</packaging>
+
     <repositories>
         <repository>
             <id>central</id>
