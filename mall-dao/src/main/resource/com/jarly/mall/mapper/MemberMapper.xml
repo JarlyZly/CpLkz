@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jarly.mall.mapper.MemberMapper">
+  <resultMap id="BaseResultMap" type="com.jarly.mall.model.Member">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="gender" jdbcType="BIT" property="gender" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="birth" jdbcType="DATE" property="birth" />
+    <result column="card_number" jdbcType="VARCHAR" property="cardNumber" />
+    <result column="bear_status" jdbcType="BIT" property="bearStatus" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="member_rank" jdbcType="BIT" property="memberRank" />
+    <result column="point" jdbcType="BIGINT" property="point" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
+    <result column="expected_date" jdbcType="DATE" property="expectedDate" />
+    <result column="is_member" jdbcType="BIT" property="isMember" />
+    <result column="point_total" jdbcType="BIGINT" property="pointTotal" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modify_date" jdbcType="TIMESTAMP" property="modifyDate" />
+    <result column="del_state" jdbcType="TINYINT" property="delState" />
+    <result column="area" jdbcType="INTEGER" property="area" />
+    <result column="is_activate" jdbcType="BIT" property="isActivate" />
+    <result column="safeKey_email" jdbcType="VARCHAR" property="safekeyEmail" />
+    <result column="safeKey_mobile" jdbcType="VARCHAR" property="safekeyMobile" />
+    <result column="expire_mobile" jdbcType="TIMESTAMP" property="expireMobile" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, username, password, nick_name, gender, name, birth, card_number, bear_status, 
+    email, mobile, address, member_rank, point, path, expected_date, is_member, point_total, 
+    create_date, modify_date, del_state, area, is_activate, safeKey_email, safeKey_mobile, 
+    expire_mobile
+  </sql>
+  <select id="selectByExample" parameterType="com.jarly.mall.model.MemberExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from member
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from member
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from member
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jarly.mall.model.MemberExample">
+    delete from member
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jarly.mall.model.Member">
+    insert into member (id, username, password, 
+      nick_name, gender, name, 
+      birth, card_number, bear_status, 
+      email, mobile, address, 
+      member_rank, point, path, 
+      expected_date, is_member, point_total, 
+      create_date, modify_date, del_state, 
+      area, is_activate, safeKey_email, 
+      safeKey_mobile, expire_mobile)
+    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{nickName,jdbcType=VARCHAR}, #{gender,jdbcType=BIT}, #{name,jdbcType=VARCHAR}, 
+      #{birth,jdbcType=DATE}, #{cardNumber,jdbcType=VARCHAR}, #{bearStatus,jdbcType=BIT}, 
+      #{email,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{memberRank,jdbcType=BIT}, #{point,jdbcType=BIGINT}, #{path,jdbcType=VARCHAR}, 
+      #{expectedDate,jdbcType=DATE}, #{isMember,jdbcType=BIT}, #{pointTotal,jdbcType=BIGINT}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{modifyDate,jdbcType=TIMESTAMP}, #{delState,jdbcType=TINYINT}, 
+      #{area,jdbcType=INTEGER}, #{isActivate,jdbcType=BIT}, #{safekeyEmail,jdbcType=VARCHAR}, 
+      #{safekeyMobile,jdbcType=VARCHAR}, #{expireMobile,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jarly.mall.model.Member">
+    insert into member
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="birth != null">
+        birth,
+      </if>
+      <if test="cardNumber != null">
+        card_number,
+      </if>
+      <if test="bearStatus != null">
+        bear_status,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="memberRank != null">
+        member_rank,
+      </if>
+      <if test="point != null">
+        point,
+      </if>
+      <if test="path != null">
+        path,
+      </if>
+      <if test="expectedDate != null">
+        expected_date,
+      </if>
+      <if test="isMember != null">
+        is_member,
+      </if>
+      <if test="pointTotal != null">
+        point_total,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="modifyDate != null">
+        modify_date,
+      </if>
+      <if test="delState != null">
+        del_state,
+      </if>
+      <if test="area != null">
+        area,
+      </if>
+      <if test="isActivate != null">
+        is_activate,
+      </if>
+      <if test="safekeyEmail != null">
+        safeKey_email,
+      </if>
+      <if test="safekeyMobile != null">
+        safeKey_mobile,
+      </if>
+      <if test="expireMobile != null">
+        expire_mobile,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=BIT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="birth != null">
+        #{birth,jdbcType=DATE},
+      </if>
+      <if test="cardNumber != null">
+        #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bearStatus != null">
+        #{bearStatus,jdbcType=BIT},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="memberRank != null">
+        #{memberRank,jdbcType=BIT},
+      </if>
+      <if test="point != null">
+        #{point,jdbcType=BIGINT},
+      </if>
+      <if test="path != null">
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="expectedDate != null">
+        #{expectedDate,jdbcType=DATE},
+      </if>
+      <if test="isMember != null">
+        #{isMember,jdbcType=BIT},
+      </if>
+      <if test="pointTotal != null">
+        #{pointTotal,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delState != null">
+        #{delState,jdbcType=TINYINT},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=INTEGER},
+      </if>
+      <if test="isActivate != null">
+        #{isActivate,jdbcType=BIT},
+      </if>
+      <if test="safekeyEmail != null">
+        #{safekeyEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="safekeyMobile != null">
+        #{safekeyMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="expireMobile != null">
+        #{expireMobile,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jarly.mall.model.MemberExample" resultType="java.lang.Long">
+    select count(*) from member
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update member
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.username != null">
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null">
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nickName != null">
+        nick_name = #{record.nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gender != null">
+        gender = #{record.gender,jdbcType=BIT},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birth != null">
+        birth = #{record.birth,jdbcType=DATE},
+      </if>
+      <if test="record.cardNumber != null">
+        card_number = #{record.cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bearStatus != null">
+        bear_status = #{record.bearStatus,jdbcType=BIT},
+      </if>
+      <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null">
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberRank != null">
+        member_rank = #{record.memberRank,jdbcType=BIT},
+      </if>
+      <if test="record.point != null">
+        point = #{record.point,jdbcType=BIGINT},
+      </if>
+      <if test="record.path != null">
+        path = #{record.path,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expectedDate != null">
+        expected_date = #{record.expectedDate,jdbcType=DATE},
+      </if>
+      <if test="record.isMember != null">
+        is_member = #{record.isMember,jdbcType=BIT},
+      </if>
+      <if test="record.pointTotal != null">
+        point_total = #{record.pointTotal,jdbcType=BIGINT},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyDate != null">
+        modify_date = #{record.modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.delState != null">
+        del_state = #{record.delState,jdbcType=TINYINT},
+      </if>
+      <if test="record.area != null">
+        area = #{record.area,jdbcType=INTEGER},
+      </if>
+      <if test="record.isActivate != null">
+        is_activate = #{record.isActivate,jdbcType=BIT},
+      </if>
+      <if test="record.safekeyEmail != null">
+        safeKey_email = #{record.safekeyEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.safekeyMobile != null">
+        safeKey_mobile = #{record.safekeyMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expireMobile != null">
+        expire_mobile = #{record.expireMobile,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update member
+    set id = #{record.id,jdbcType=BIGINT},
+      username = #{record.username,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      nick_name = #{record.nickName,jdbcType=VARCHAR},
+      gender = #{record.gender,jdbcType=BIT},
+      name = #{record.name,jdbcType=VARCHAR},
+      birth = #{record.birth,jdbcType=DATE},
+      card_number = #{record.cardNumber,jdbcType=VARCHAR},
+      bear_status = #{record.bearStatus,jdbcType=BIT},
+      email = #{record.email,jdbcType=VARCHAR},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      member_rank = #{record.memberRank,jdbcType=BIT},
+      point = #{record.point,jdbcType=BIGINT},
+      path = #{record.path,jdbcType=VARCHAR},
+      expected_date = #{record.expectedDate,jdbcType=DATE},
+      is_member = #{record.isMember,jdbcType=BIT},
+      point_total = #{record.pointTotal,jdbcType=BIGINT},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      modify_date = #{record.modifyDate,jdbcType=TIMESTAMP},
+      del_state = #{record.delState,jdbcType=TINYINT},
+      area = #{record.area,jdbcType=INTEGER},
+      is_activate = #{record.isActivate,jdbcType=BIT},
+      safeKey_email = #{record.safekeyEmail,jdbcType=VARCHAR},
+      safeKey_mobile = #{record.safekeyMobile,jdbcType=VARCHAR},
+      expire_mobile = #{record.expireMobile,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jarly.mall.model.Member">
+    update member
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=BIT},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="birth != null">
+        birth = #{birth,jdbcType=DATE},
+      </if>
+      <if test="cardNumber != null">
+        card_number = #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bearStatus != null">
+        bear_status = #{bearStatus,jdbcType=BIT},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="memberRank != null">
+        member_rank = #{memberRank,jdbcType=BIT},
+      </if>
+      <if test="point != null">
+        point = #{point,jdbcType=BIGINT},
+      </if>
+      <if test="path != null">
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="expectedDate != null">
+        expected_date = #{expectedDate,jdbcType=DATE},
+      </if>
+      <if test="isMember != null">
+        is_member = #{isMember,jdbcType=BIT},
+      </if>
+      <if test="pointTotal != null">
+        point_total = #{pointTotal,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delState != null">
+        del_state = #{delState,jdbcType=TINYINT},
+      </if>
+      <if test="area != null">
+        area = #{area,jdbcType=INTEGER},
+      </if>
+      <if test="isActivate != null">
+        is_activate = #{isActivate,jdbcType=BIT},
+      </if>
+      <if test="safekeyEmail != null">
+        safeKey_email = #{safekeyEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="safekeyMobile != null">
+        safeKey_mobile = #{safekeyMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="expireMobile != null">
+        expire_mobile = #{expireMobile,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jarly.mall.model.Member">
+    update member
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=BIT},
+      name = #{name,jdbcType=VARCHAR},
+      birth = #{birth,jdbcType=DATE},
+      card_number = #{cardNumber,jdbcType=VARCHAR},
+      bear_status = #{bearStatus,jdbcType=BIT},
+      email = #{email,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      member_rank = #{memberRank,jdbcType=BIT},
+      point = #{point,jdbcType=BIGINT},
+      path = #{path,jdbcType=VARCHAR},
+      expected_date = #{expectedDate,jdbcType=DATE},
+      is_member = #{isMember,jdbcType=BIT},
+      point_total = #{pointTotal,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      del_state = #{delState,jdbcType=TINYINT},
+      area = #{area,jdbcType=INTEGER},
+      is_activate = #{isActivate,jdbcType=BIT},
+      safeKey_email = #{safekeyEmail,jdbcType=VARCHAR},
+      safeKey_mobile = #{safekeyMobile,jdbcType=VARCHAR},
+      expire_mobile = #{expireMobile,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -55,7 +55,7 @@
         <profile>
             <id>1360</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
                 <profile.env.name>env.1360.properties</profile.env.name>
@@ -64,7 +64,7 @@
         <profile>
             <id>solid</id>
             <activation>
-                <activeByDefault>false</activeByDefault>
+                <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
                 <profile.env.name>env.solid.properties</profile.env.name>

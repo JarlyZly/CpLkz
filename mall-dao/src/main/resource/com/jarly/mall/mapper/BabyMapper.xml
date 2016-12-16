@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jarly.mall.mapper.BabyMapper">
+  <resultMap id="BaseResultMap" type="com.jarly.mall.model.Baby">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="baby_name" jdbcType="VARCHAR" property="babyName" />
+    <result column="baby_gender" jdbcType="BIT" property="babyGender" />
+    <result column="baby_birth" jdbcType="TIMESTAMP" property="babyBirth" />
+    <result column="member_id" jdbcType="BIGINT" property="memberId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, baby_name, baby_gender, baby_birth, member_id
+  </sql>
+  <select id="selectByExample" parameterType="com.jarly.mall.model.BabyExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from baby
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from baby
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from baby
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jarly.mall.model.BabyExample">
+    delete from baby
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jarly.mall.model.Baby">
+    insert into baby (id, baby_name, baby_gender, 
+      baby_birth, member_id)
+    values (#{id,jdbcType=BIGINT}, #{babyName,jdbcType=VARCHAR}, #{babyGender,jdbcType=BIT}, 
+      #{babyBirth,jdbcType=TIMESTAMP}, #{memberId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jarly.mall.model.Baby">
+    insert into baby
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="babyName != null">
+        baby_name,
+      </if>
+      <if test="babyGender != null">
+        baby_gender,
+      </if>
+      <if test="babyBirth != null">
+        baby_birth,
+      </if>
+      <if test="memberId != null">
+        member_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="babyName != null">
+        #{babyName,jdbcType=VARCHAR},
+      </if>
+      <if test="babyGender != null">
+        #{babyGender,jdbcType=BIT},
+      </if>
+      <if test="babyBirth != null">
+        #{babyBirth,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jarly.mall.model.BabyExample" resultType="java.lang.Long">
+    select count(*) from baby
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update baby
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.babyName != null">
+        baby_name = #{record.babyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.babyGender != null">
+        baby_gender = #{record.babyGender,jdbcType=BIT},
+      </if>
+      <if test="record.babyBirth != null">
+        baby_birth = #{record.babyBirth,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.memberId != null">
+        member_id = #{record.memberId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update baby
+    set id = #{record.id,jdbcType=BIGINT},
+      baby_name = #{record.babyName,jdbcType=VARCHAR},
+      baby_gender = #{record.babyGender,jdbcType=BIT},
+      baby_birth = #{record.babyBirth,jdbcType=TIMESTAMP},
+      member_id = #{record.memberId,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jarly.mall.model.Baby">
+    update baby
+    <set>
+      <if test="babyName != null">
+        baby_name = #{babyName,jdbcType=VARCHAR},
+      </if>
+      <if test="babyGender != null">
+        baby_gender = #{babyGender,jdbcType=BIT},
+      </if>
+      <if test="babyBirth != null">
+        baby_birth = #{babyBirth,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memberId != null">
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jarly.mall.model.Baby">
+    update baby
+    set baby_name = #{babyName,jdbcType=VARCHAR},
+      baby_gender = #{babyGender,jdbcType=BIT},
+      baby_birth = #{babyBirth,jdbcType=TIMESTAMP},
+      member_id = #{memberId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -3,41 +3,83 @@
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
-    <classPathEntry
-            location = "C:\Users\1360\.m2\repository\mysql\mysql-connector-java\6.0.5\mysql-connector-java-6.0.5.jar"/>
-    <context id="DB2Tables" targetRuntime="MyBatis3">
+    <classPathEntry location = "/home/solid/.m2/repository/mysql/mysql-connector-java/5.1.21/mysql-connector-java-5.1.21.jar"/>
+    <context id="Mysql" targetRuntime="MyBatis3">
         <commentGenerator>
             <!--remove data and comments-->
-            <property name="suppressDate" value="false"/>
-            <property name="suppressAllComments" value="false"/>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true" />
         </commentGenerator>
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://192.168.120.80:3306/mall"
-                        userId="zhong"
-                        password="maxwit">
+                        connectionURL="jdbc:mysql://localhost:3306/mall"
+                        userId="adminsw"
+                        password="adminpw">
         </jdbcConnection>
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
-
-        <javaModelGenerator targetPackage="com.maxwit.model"
-                            targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.jarly.mall.model"
+                            targetProject="../../../../mall-common/src/main/java">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
-
         <sqlMapGenerator targetPackage="com.jarly.mall.mapper"
-                         targetProject="src/main/java">
+                         targetProject="./">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
-
         <javaClientGenerator type="XMLMAPPER"
                              targetPackage="com.jarly.mall.mapper"
-                             targetProject="src/main/resources/">
+                             targetProject="../java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
         <!-- 要生成哪些表-->
-        <table schema="mall" tableName="student" domainObjectName="Student"/>
+        <table schema="mall" tableName="admin_operate_user" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="admin_resource" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="admin_resource_group" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="admin_resource_link_group" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="admin_role" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="admin_role_resource" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="area" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="attribute" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="attribute_option" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="baby" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="bank_branch_info" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="bank_info" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="cart_device" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="cart_user" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="collect" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="coupon" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="freight_template" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="history" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="invoice_title" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="logistics_company" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="member" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="member_coupon" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="member_order" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="negotiate" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="order_item" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="payment" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="product" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="product_category" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="product_comment" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="product_comment_extend" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="product_keywords" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="product_product_image" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="product_sku" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="products_brand_info" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="questionnaire" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="quick_register" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="receiver" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="refund" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="refunds" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="remind_shipment" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="returns" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="shipping" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="shipping_item" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="shipping_method" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="specification" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="specification_value" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="third_party" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
+        <table schema="mall" tableName="user_feedback" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableInsert="true"/>
     </context>
-
 </generatorConfiguration>

@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jarly.mall.mapper.ShippingItemMapper">
+  <resultMap id="BaseResultMap" type="com.jarly.mall.model.ShippingItem">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modify_date" jdbcType="TIMESTAMP" property="modifyDate" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="sn" jdbcType="VARCHAR" property="sn" />
+    <result column="shipping" jdbcType="BIGINT" property="shipping" />
+    <result column="order_item" jdbcType="BIGINT" property="orderItem" />
+    <result column="tracking_no" jdbcType="VARCHAR" property="trackingNo" />
+    <result column="logiCompany" jdbcType="BIGINT" property="logicompany" />
+    <result column="logiInfo" jdbcType="VARCHAR" property="logiinfo" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, create_date, modify_date, name, quantity, sn, shipping, order_item, tracking_no, 
+    logiCompany, logiInfo
+  </sql>
+  <select id="selectByExample" parameterType="com.jarly.mall.model.ShippingItemExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from shipping_item
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from shipping_item
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from shipping_item
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jarly.mall.model.ShippingItemExample">
+    delete from shipping_item
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jarly.mall.model.ShippingItem">
+    insert into shipping_item (id, create_date, modify_date, 
+      name, quantity, sn, 
+      shipping, order_item, tracking_no, 
+      logiCompany, logiInfo)
+    values (#{id,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP}, #{modifyDate,jdbcType=TIMESTAMP}, 
+      #{name,jdbcType=VARCHAR}, #{quantity,jdbcType=INTEGER}, #{sn,jdbcType=VARCHAR}, 
+      #{shipping,jdbcType=BIGINT}, #{orderItem,jdbcType=BIGINT}, #{trackingNo,jdbcType=VARCHAR}, 
+      #{logicompany,jdbcType=BIGINT}, #{logiinfo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jarly.mall.model.ShippingItem">
+    insert into shipping_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="modifyDate != null">
+        modify_date,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="quantity != null">
+        quantity,
+      </if>
+      <if test="sn != null">
+        sn,
+      </if>
+      <if test="shipping != null">
+        shipping,
+      </if>
+      <if test="orderItem != null">
+        order_item,
+      </if>
+      <if test="trackingNo != null">
+        tracking_no,
+      </if>
+      <if test="logicompany != null">
+        logiCompany,
+      </if>
+      <if test="logiinfo != null">
+        logiInfo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null">
+        #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="sn != null">
+        #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="shipping != null">
+        #{shipping,jdbcType=BIGINT},
+      </if>
+      <if test="orderItem != null">
+        #{orderItem,jdbcType=BIGINT},
+      </if>
+      <if test="trackingNo != null">
+        #{trackingNo,jdbcType=VARCHAR},
+      </if>
+      <if test="logicompany != null">
+        #{logicompany,jdbcType=BIGINT},
+      </if>
+      <if test="logiinfo != null">
+        #{logiinfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jarly.mall.model.ShippingItemExample" resultType="java.lang.Long">
+    select count(*) from shipping_item
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update shipping_item
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyDate != null">
+        modify_date = #{record.modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.quantity != null">
+        quantity = #{record.quantity,jdbcType=INTEGER},
+      </if>
+      <if test="record.sn != null">
+        sn = #{record.sn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shipping != null">
+        shipping = #{record.shipping,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderItem != null">
+        order_item = #{record.orderItem,jdbcType=BIGINT},
+      </if>
+      <if test="record.trackingNo != null">
+        tracking_no = #{record.trackingNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logicompany != null">
+        logiCompany = #{record.logicompany,jdbcType=BIGINT},
+      </if>
+      <if test="record.logiinfo != null">
+        logiInfo = #{record.logiinfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update shipping_item
+    set id = #{record.id,jdbcType=BIGINT},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      modify_date = #{record.modifyDate,jdbcType=TIMESTAMP},
+      name = #{record.name,jdbcType=VARCHAR},
+      quantity = #{record.quantity,jdbcType=INTEGER},
+      sn = #{record.sn,jdbcType=VARCHAR},
+      shipping = #{record.shipping,jdbcType=BIGINT},
+      order_item = #{record.orderItem,jdbcType=BIGINT},
+      tracking_no = #{record.trackingNo,jdbcType=VARCHAR},
+      logiCompany = #{record.logicompany,jdbcType=BIGINT},
+      logiInfo = #{record.logiinfo,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jarly.mall.model.ShippingItem">
+    update shipping_item
+    <set>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null">
+        quantity = #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="sn != null">
+        sn = #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="shipping != null">
+        shipping = #{shipping,jdbcType=BIGINT},
+      </if>
+      <if test="orderItem != null">
+        order_item = #{orderItem,jdbcType=BIGINT},
+      </if>
+      <if test="trackingNo != null">
+        tracking_no = #{trackingNo,jdbcType=VARCHAR},
+      </if>
+      <if test="logicompany != null">
+        logiCompany = #{logicompany,jdbcType=BIGINT},
+      </if>
+      <if test="logiinfo != null">
+        logiInfo = #{logiinfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jarly.mall.model.ShippingItem">
+    update shipping_item
+    set create_date = #{createDate,jdbcType=TIMESTAMP},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      name = #{name,jdbcType=VARCHAR},
+      quantity = #{quantity,jdbcType=INTEGER},
+      sn = #{sn,jdbcType=VARCHAR},
+      shipping = #{shipping,jdbcType=BIGINT},
+      order_item = #{orderItem,jdbcType=BIGINT},
+      tracking_no = #{trackingNo,jdbcType=VARCHAR},
+      logiCompany = #{logicompany,jdbcType=BIGINT},
+      logiInfo = #{logiinfo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

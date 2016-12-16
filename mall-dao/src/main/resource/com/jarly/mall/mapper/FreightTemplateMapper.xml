@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jarly.mall.mapper.FreightTemplateMapper">
+  <resultMap id="BaseResultMap" type="com.jarly.mall.model.FreightTemplate">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modify_date" jdbcType="TIMESTAMP" property="modifyDate" />
+    <result column="door_fee" jdbcType="DECIMAL" property="doorFee" />
+    <result column="logistics_unit_price" jdbcType="DECIMAL" property="logisticsUnitPrice" />
+    <result column="charge" jdbcType="DECIMAL" property="charge" />
+    <result column="renew" jdbcType="DECIMAL" property="renew" />
+    <result column="area" jdbcType="BIGINT" property="area" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, create_date, modify_date, door_fee, logistics_unit_price, charge, renew, area
+  </sql>
+  <select id="selectByExample" parameterType="com.jarly.mall.model.FreightTemplateExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from freight_template
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from freight_template
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from freight_template
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jarly.mall.model.FreightTemplateExample">
+    delete from freight_template
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jarly.mall.model.FreightTemplate">
+    insert into freight_template (id, create_date, modify_date, 
+      door_fee, logistics_unit_price, charge, 
+      renew, area)
+    values (#{id,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP}, #{modifyDate,jdbcType=TIMESTAMP}, 
+      #{doorFee,jdbcType=DECIMAL}, #{logisticsUnitPrice,jdbcType=DECIMAL}, #{charge,jdbcType=DECIMAL}, 
+      #{renew,jdbcType=DECIMAL}, #{area,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jarly.mall.model.FreightTemplate">
+    insert into freight_template
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="modifyDate != null">
+        modify_date,
+      </if>
+      <if test="doorFee != null">
+        door_fee,
+      </if>
+      <if test="logisticsUnitPrice != null">
+        logistics_unit_price,
+      </if>
+      <if test="charge != null">
+        charge,
+      </if>
+      <if test="renew != null">
+        renew,
+      </if>
+      <if test="area != null">
+        area,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="doorFee != null">
+        #{doorFee,jdbcType=DECIMAL},
+      </if>
+      <if test="logisticsUnitPrice != null">
+        #{logisticsUnitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="charge != null">
+        #{charge,jdbcType=DECIMAL},
+      </if>
+      <if test="renew != null">
+        #{renew,jdbcType=DECIMAL},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jarly.mall.model.FreightTemplateExample" resultType="java.lang.Long">
+    select count(*) from freight_template
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update freight_template
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyDate != null">
+        modify_date = #{record.modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.doorFee != null">
+        door_fee = #{record.doorFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.logisticsUnitPrice != null">
+        logistics_unit_price = #{record.logisticsUnitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.charge != null">
+        charge = #{record.charge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.renew != null">
+        renew = #{record.renew,jdbcType=DECIMAL},
+      </if>
+      <if test="record.area != null">
+        area = #{record.area,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update freight_template
+    set id = #{record.id,jdbcType=BIGINT},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      modify_date = #{record.modifyDate,jdbcType=TIMESTAMP},
+      door_fee = #{record.doorFee,jdbcType=DECIMAL},
+      logistics_unit_price = #{record.logisticsUnitPrice,jdbcType=DECIMAL},
+      charge = #{record.charge,jdbcType=DECIMAL},
+      renew = #{record.renew,jdbcType=DECIMAL},
+      area = #{record.area,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jarly.mall.model.FreightTemplate">
+    update freight_template
+    <set>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="doorFee != null">
+        door_fee = #{doorFee,jdbcType=DECIMAL},
+      </if>
+      <if test="logisticsUnitPrice != null">
+        logistics_unit_price = #{logisticsUnitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="charge != null">
+        charge = #{charge,jdbcType=DECIMAL},
+      </if>
+      <if test="renew != null">
+        renew = #{renew,jdbcType=DECIMAL},
+      </if>
+      <if test="area != null">
+        area = #{area,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jarly.mall.model.FreightTemplate">
+    update freight_template
+    set create_date = #{createDate,jdbcType=TIMESTAMP},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      door_fee = #{doorFee,jdbcType=DECIMAL},
+      logistics_unit_price = #{logisticsUnitPrice,jdbcType=DECIMAL},
+      charge = #{charge,jdbcType=DECIMAL},
+      renew = #{renew,jdbcType=DECIMAL},
+      area = #{area,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
